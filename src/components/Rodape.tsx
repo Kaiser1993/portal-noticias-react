@@ -5,7 +5,7 @@ return(
         Desenvolvido por: 
     </p>
     <a href="#">
-        Isabelle Sidreira
+        Luiz Jefferson
     </a>
 </footer>
 );
