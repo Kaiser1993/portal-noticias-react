@@ -1,7 +1,3 @@
-
-
-
-
 function Home(){
 return(
 <>
