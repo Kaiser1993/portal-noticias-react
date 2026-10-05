@@ -1,38 +1,44 @@
-import "../styles/menuAcessibilidade.css"
-import useAcessibilidade from "../hooks/useAcessibilidade"
+import "../styles/menuAcessibilidade.css";
+import useAcessibilidade from "../hooks/useAcessibilidade";
 
 function MenuAcessibilidade(){
 
-const {menuAberto, abrirMenu, aumentarFonte, diminuirFonte, alterarContraste} = useAcessibilidade()
+const {
+    menuAberto,
+    abrirMenu,
+    aumentarFonte,
+    diminuirFonte,
+alterarContraste
+}=useAcessibilidade()
 
     return(
         <>
 <div>
 
-<span aria-label="Início da página">&nbsp;</span>
+<span aria-label="inicioDaPagina"> &nbsp;</span>
 
-<a href="#conteudoPrincipal" className="skipLink">
-    Ir para o conteúdo principal
+        <a href="#conteudoPrincipal" className="skipLink">
+Ir para o conteúdo principal
 </a>
 
 <button id="btnAcessibilidade" aria-expanded={menuAberto} onClick={abrirMenu}>
-    <img src="./acessibilidade.png" width="25" alt="ícone de acessibilidade"></img>
+<img src="/public/acessibilidade.png" width="25" alt="Ícone de acessibilidade com uma figura humana estilizada formada por círculos azuis e linhas pretas."/>
 </button>
 <div id="menuAcessibilidade" hidden={!menuAberto}>
-<button id="btnAumentarFonte" aria-label="aumentarFonte" onClick={aumentarFonte}>
-Aumentar fonte
+<button id="btnAumentarFonte" aria-label="Aumentar fonte" onClick={aumentarFonte}>
+Aumentar Fonte
 </button>
-<button id="btnDiminuirFonte" aria-label="diminuirFonte" onClick={diminuirFonte}>
-Diminuir fonte
+<button id="btnDiminuirFonte" aria-label="Diminuir fonte" onClick={diminuirFonte}>
+Diminuir Fonte
 </button>
-<button id="btnAlterarContraste" aria-label="alterarContraste" onClick={alterarContraste}>
-Alterar contraste
+<button id="btnAlterarContraste" aria-label="Auterar contraste" onClick={alterarContraste}>
+Alterar Contraste
 </button>
 </div>
     </div>
     
         </>
-    )
+    );
 }
 
 export default MenuAcessibilidade

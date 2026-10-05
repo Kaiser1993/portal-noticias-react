@@ -6,8 +6,8 @@ return(
     <p>
         Desenvolvido por: 
     </p>
-    <Link to="/Sobre">
-    Luiz Jefferson
+    <Link to="/sobre">
+    Osvaldo Caldeira
     </Link>
 </footer>
 );

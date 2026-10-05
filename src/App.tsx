@@ -5,12 +5,14 @@ import Rodape from "./components/Rodape"
 
 function App(){
   return(
-<>
-<MenuAcessibilidade/>
-<Menu/>
+
+    <>
+    <MenuAcessibilidade/>
+    <Menu/>
 <Outlet/>
 <Rodape/>
-</>
+    </>
   )
 }
+
 export default App
