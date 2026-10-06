@@ -1,6 +1,8 @@
 import MenuAdm from "../components/MenuAdm"
+import useAdministrador from "../hooks/useAdministrador"
 
 function TelaCadastroAdm(){
+    const {mensagem, nome, email, senha, setNome, setEmail, setSenha, cadastrarAdministrador} = useAdministrador();
     return(
         <>
         <MenuAdm/>
@@ -9,15 +11,19 @@ function TelaCadastroAdm(){
             </h1>
 
             <main id="conteudoPrincipal">
-<div id="divMensagem" role="alert"></div>
-<form id="formCadastroAdm">
+<div id="divMensagem" role="alert">
+{mensagem}
+</div>
+<form id="formCadAdm" onSubmit={cadastrarAdministrador}>
 
 <div>
     <label htmlFor="txtNome">
 Nome
     </label>
     <br/>
-    <input type="text" id="txtNome" required/>
+    <input type="text" id="txtNome" required 
+    value={nome} 
+    onChange={(evento) => {setNome(evento.target.value)}}/>
 </div>
     
     <div>
@@ -25,14 +31,20 @@ Nome
                     E-mail
                 </label>
                 <br/>
-            <input type="email" id="txtEmail" required/>
+            <input type="email" id="txtEmail" required 
+            value={email}
+            onChange={(evento) => {setEmail(evento.target.value)}}
+            />
              </div>
             <div>
                 <label htmlFor="txtSenha">
                 Senha 
                 </label>
                 <br/>
-            <input type="password" id="txtSenha" required/>
+            <input type="password" id="txtSenha" required 
+            value={senha}
+            onChange={(evento) => {setSenha(evento.target.value)}}
+            />
  
 </div>
 
