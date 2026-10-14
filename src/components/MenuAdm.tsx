@@ -12,7 +12,11 @@ function MenuAdm(){
         <Link to="/telacadastroadm" className="botao-menu">
         Cadastro de Administrador
         </Link>
-    </p>
+        <Link to="/telaListaAdm" className="botao-menu">
+        Listagem de Administradores
+        </Link>
+        
+        </p>
 </nav>
 </>
 )
