@@ -1,8 +1,9 @@
 import MenuAdm from "../components/MenuAdm"
-import useAdministrador from "../hooks/useAdministrador"
+import { useAdm } from "../hooks/useAdm";
+
 
 function TelaCadastroAdm(){
-    const {mensagem, nome, email, senha, setNome, setEmail, setSenha, cadastrarAdministrador} = useAdministrador();
+    const {mensagem, nome, email, senha, setNome, setEmail, setSenha, cadastrarAdm} = useAdm();
     return(
         <>
         <MenuAdm/>
@@ -14,7 +15,7 @@ function TelaCadastroAdm(){
 <div id="divMensagem" role="alert">
 {mensagem}
 </div>
-<form id="formCadAdm" onSubmit={cadastrarAdministrador}>
+<form id="formCadAdm" onSubmit={cadastrarAdm}>
 
 <div>
     <label htmlFor="txtNome">

@@ -1,17 +1,21 @@
+import { useState } from "react";
 import MenuAdm from "../components/MenuAdm";
 import { useAdm } from "../hooks/useAdm";
+import { useNavigate } from "react-router";
 
 export function TelaListaAdm(){
-    const {buscarAdministradores} = useAdm()
-    const listaAdministradores = buscarAdministradores();
-    return(
+    const {buscarAdministradores,excluirAdministrador} = useAdm()
+    const [listaAdministradores, setListaAdministradores] = useState(buscarAdministradores());
+    const navigate = useNavigate();
+    
+    return  (
         <>
         <MenuAdm/>
-        <h1 >
+        <main id="conteudoPrincipal">
+<h1 >
             Tela de listagem de ADM
         </h1>
-        <main id="conteudoPrincipal">
-
+        
 <table>
     <thead>
     <tr>
@@ -21,13 +25,16 @@ export function TelaListaAdm(){
         <th>
             Email
             </th>
+            <th>
+                Ações
+            </th>
     </tr>
     </thead>
     <tbody>
        {
         listaAdministradores.map(
-            (administrador: any) => (
-<tr>
+            (administrador) => (
+<tr key={administrador.email}>
     <td>
         {
             administrador.nome
@@ -37,6 +44,21 @@ export function TelaListaAdm(){
         {
             administrador.email
         }
+    </td>
+    <td>
+        <button
+       onClick={() => {
+            const confirmar = window.confirm("Deseja excluir o administrador " + administrador.nome + "?")
+
+            if(confirmar){
+excluirAdministrador(administrador.email)
+
+setListaAdministradores(buscarAdministradores());
+            }
+        }}
+        >
+            Excluir
+        </button>
     </td>
 </tr>
             )
