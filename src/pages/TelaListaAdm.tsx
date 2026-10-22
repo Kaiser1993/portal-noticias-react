@@ -4,67 +4,69 @@ import { useAdm } from "../hooks/useAdm";
 import { useNavigate } from "react-router";
 
 export function TelaListaAdm(){
-    const {buscarAdministradores,excluirAdministrador} = useAdm()
+    const {buscarAdministradores, excluirAdministrador} = useAdm()
     const [listaAdministradores, setListaAdministradores] = useState(buscarAdministradores());
-    const navigate = useNavigate();
+const navigate = useNavigate();
     
-    return  (
+    return(
         <>
         <MenuAdm/>
         <main id="conteudoPrincipal">
-<h1 >
+            <h1 >
             Tela de listagem de ADM
         </h1>
-        
 <table>
-    <thead>
+            <thead>
+
     <tr>
         <th>
             Nome
-            </th>
+        </th>
         <th>
-            Email
-            </th>
-            <th>
-                Ações
-            </th>
+            E-mail
+        </th>
+        <th colSpan={2}>
+            Ações
+        </th>
     </tr>
-    </thead>
-    <tbody>
-       {
-        listaAdministradores.map(
-            (administrador) => (
+     </thead>
+     <tbody>
+        {
+            listaAdministradores.map(
+                (administrador ) => (
 <tr key={administrador.email}>
     <td>
-        {
-            administrador.nome
-        }
+        {administrador.nome}
     </td>
     <td>
-        {
-            administrador.email
-        }
+        {administrador.email}
+    </td>
+    <td>
+        <button onClick={() => {
+            navigate("/telaCadastroAdm", {
+state: { administrador}
+            });
+        }}>
+            Alterar
+        </button>
     </td>
     <td>
         <button
-       onClick={() => {
-            const confirmar = window.confirm("Deseja excluir o administrador " + administrador.nome + "?")
-
+        onClick={() => {
+            const confirmar = window.confirm("Deseja excluir o administrador " + administrador.nome + "?");
             if(confirmar){
-excluirAdministrador(administrador.email)
-
+excluirAdministrador(administrador.email);
 setListaAdministradores(buscarAdministradores());
             }
-        }}
-        >
+        }}>
             Excluir
         </button>
     </td>
 </tr>
+                )
             )
-        )
-       } 
-    </tbody>
+        }
+     </tbody>
 </table>
         </main>
         </>

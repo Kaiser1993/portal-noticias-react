@@ -31,17 +31,19 @@ path: "/adm",
 Component: Adm
 
             },
+
             {
-            path: "/telacadastroadm",
-         Component: TelaCadastroAdm
+                path: "/telaCadastroAdm", 
+                Component: TelaCadastroAdm
             },
             {
-            path: "/telalistaadm",
-         Component: TelaListaAdm
-
+                path: "/telaListaAdm",
+                Component: TelaListaAdm
             }
         ]
     }
+
+
 ]
 );
 export default rotas;
