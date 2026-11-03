@@ -3,6 +3,7 @@ import type Administrador from "../interfaces/Administrador";
 import { useNavigate } from "react-router";
 
 export function useAdm() {
+    const [id, setId] = useState("");
     const [nome, setNome] = useState("");
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
@@ -11,7 +12,7 @@ export function useAdm() {
 const navigate = useNavigate();
 function cadastrarAdm(evento: React.SubmitEvent<HTMLFormElement>){
 evento.preventDefault();
-const administrador = {nome, email, senha};
+const administrador: Administrador = {id: crypto.randomUUID(), nome, email, senha};
 const listaAdministradores = JSON.parse(localStorage.getItem("listaAdministradores") || "[]");
 listaAdministradores.push(administrador);
 localStorage.setItem("listaAdministradores", JSON.stringify(listaAdministradores));
@@ -23,6 +24,7 @@ setTimeout(() => {
 }
 
 function limparCampos () {
+    setId("");
     setNome("");
     setEmail("");
     setSenha("");
@@ -34,11 +36,11 @@ function buscarAdministradores(): Administrador[] {
     return listaAdministradores
 }
 
-function excluirAdministrador(email: string){
+function excluirAdministrador(id: string){
 const listaAdministradores = buscarAdministradores();
 const novaLista = listaAdministradores.filter(
     (administrador) => 
-administrador.email != email
+administrador.id != id
     
 );
 localStorage.setItem("listaAdministradores", JSON.stringify(novaLista));
@@ -46,16 +48,16 @@ localStorage.setItem("listaAdministradores", JSON.stringify(novaLista));
 
 function alterarAdministrador(
     evento: React.SubmitEvent<HTMLFormElement>, 
-emailOriginal: string) {
+id: string) {
 evento.preventDefault();
 
 const listaAdministradores = buscarAdministradores();
 
 const novaLista = listaAdministradores.map(
     (administrador) => {
-if(administrador.email == emailOriginal){
+if(administrador.id == id){
 return {
-    nome, email, senha
+    id, nome, email, senha
 };
 }
 return(administrador)
@@ -70,6 +72,7 @@ navigate("/telaListaAdm");
 }
 
 return({
+    id, setId,
     nome, setNome,
     email, setEmail,
     senha, setSenha,

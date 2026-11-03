@@ -1,22 +1,24 @@
 import { useEffect } from "react";
-import { useNavigate } from "react-router";
 import MenuAdm from "../components/MenuAdm";
+import useLogin from "../hooks/useLogin";
 
 function Adm () {
-    const navigate = useNavigate();
+    
+    const {verificarUsuarioLogado} = useLogin();
+
     useEffect(() => {
-const usuarioLogado = localStorage.getItem("usuarioLogado")
-if(usuarioLogado != "sim") {
-navigate("/login")
-}
+
+        verificarUsuarioLogado()
+
     }, []);
-return(
-    <>
-    <main id="conteudoPrincipal">
-        <MenuAdm/>
-    </main>
-    </>
-)
+
+    return(
+        <>
+        <main id="conteudoPrincipal">
+            <MenuAdm/>
+        </main>
+        </>
+    )
 }
 
 export default Adm;

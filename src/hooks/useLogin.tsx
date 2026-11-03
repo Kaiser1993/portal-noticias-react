@@ -33,13 +33,25 @@ function realizarLogout() {
     localStorage.removeItem("usuarioLogado");
 }
 
+function verificarUsuarioLogado(){
+
+    const usuarioLogado = localStorage.getItem("usuarioLogado")
+    if(usuarioLogado != "sim") {
+    navigate("/login")
+    }
+
+
+}
+
+
     return (
 {
     email, setEmail,
     senha, setSenha,
     mensagem, setMensagem,
     realizarLogin,
-    realizarLogout
+    realizarLogout,
+    verificarUsuarioLogado
 } 
     )
 }
